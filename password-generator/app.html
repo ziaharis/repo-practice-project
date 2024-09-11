@@ -111,9 +111,20 @@
             const password = passwordList.join('');
             document.getElementById('password-output').textContent = password;
 
-            // Calculate password strength
+            // calculate strength
             const strength = calculatePasswordStrength(password);
-            document.getElementById('password-strength').textContent = `Password Strength: ${strength}`;
+            const strengthElement = document.getElementById('password-strength');
+
+            strengthElement.textContent = `Password Strength: ${strength}`;
+            
+            // apply color based on strength
+            if (strength === 'Strong') {
+                strengthElement.style.color = 'green';
+            } else if (strength === 'Moderate') {
+                strengthElement.style.color = 'yellow';
+            } else {
+                strengthElement.style.color = 'red';
+            }
         });
 
         function calculatePasswordStrength(password) {

@@ -26,19 +26,31 @@ document.getElementById('generate-btn').addEventListener('click', function() {
     const password = passwordList.join('');
     document.getElementById('password-output').textContent = password;
 
-    // Calculate password strength
-    const strength = calculatePasswordStrength(password);
-    document.getElementById('password-strength').textContent = `Password Strength: ${strength}`;
+   // calc strength
+   const strength = calculatePasswordStrength(password);
+   const strengthElement = document.getElementById('password-strength');
+
+   // update strength
+   strengthElement.textContent = `Password Strength: ${strength}`;
+   
+   // colour apply based on strength
+   if (strength === 'Strong') {
+       strengthElement.style.color = 'green';
+   } else if (strength === 'Moderate') {
+       strengthElement.style.color = 'yellow';
+   } else {
+       strengthElement.style.color = 'red';
+   }
 });
 
 function calculatePasswordStrength(password) {
-    let strength = 'Weak';
-    if (password.length >= 8) {
-        if (/[A-Z]/.test(password) && /[a-z]/.test(password) && /\d/.test(password) && /[!@#$%^&*(),.?":{}|<>]/.test(password)) {
-            strength = 'Strong';
-        } else if (/[A-Z]/.test(password) && /[a-z]/.test(password) && /\d/.test(password)) {
-            strength = 'Moderate';
-        }
-    }
-    return strength;
+   let strength = 'Weak';
+   if (password.length >= 8) {
+       if (/[A-Z]/.test(password) && /[a-z]/.test(password) && /\d/.test(password) && /[!@#$%^&*(),.?":{}|<>]/.test(password)) {
+           strength = 'Strong';
+       } else if (/[A-Z]/.test(password) && /[a-z]/.test(password) && /\d/.test(password)) {
+           strength = 'Moderate';
+       }
+   }
+   return strength;
 }
