@@ -18,14 +18,14 @@ document.getElementById('process-btn').addEventListener('click', function() {
                 shiftedPosition = shiftedPosition < 0 ? alphabet.length + shiftedPosition : shiftedPosition;
                 cipherText += alphabet[shiftedPosition];
             } else {
-                cipherText += letter; // Preserve non-alphabet characters
+                cipherText += letter; // keep non alphabet stuff
             }
         }
         return cipherText;
     }
 
     function decrypt(originalText, shiftAmount) {
-        return encrypt(originalText, -shiftAmount); // Decryption is just the inverse of encryption
+        return encrypt(originalText, -shiftAmount); // the inverse
     }
 
     const result = direction === 'encode' ? encrypt(text, shift) : decrypt(text, shift);
